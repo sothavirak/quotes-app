@@ -5,6 +5,8 @@ import { QuotePage } from '../quote/quote';
 
 import { ModalController, MenuController } from 'ionic-angular';
 
+import { SettingsService } from '../../services/settings';
+
 @Component({
   selector: 'page-favorites',
   templateUrl: 'favorites.html',
@@ -14,7 +16,8 @@ export class FavoritesPage {
 
 	constructor (private quotesService: QuotesService,
 				private modalCtrl: ModalController,
-				private menuCtrl: MenuController) {
+				private menuCtrl: MenuController,
+				private settingsService: SettingsService) {
 
 	}
 
@@ -48,6 +51,14 @@ export class FavoritesPage {
 
 	onOpenMenu() {
 		this.menuCtrl.open();
+	}
+
+	getBackground() {
+		return this.settingsService.isAltBackground() ? 'altQuoteBackground' : 'quoteBackground';
+	}
+
+	isAltBackground() {
+		return this.settingsService.isAltBackground();
 	}
 
 }
