@@ -3,7 +3,7 @@ import { Quote } from '../../data/quote.interface';
 import { QuotesService } from '../../services/quotes';
 import { QuotePage } from '../quote/quote';
 
-import { ModalController } from 'ionic-angular';
+import { ModalController, MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'page-favorites',
@@ -13,7 +13,8 @@ export class FavoritesPage {
 	quotes: Quote[];
 
 	constructor (private quotesService: QuotesService,
-				private modalCtrl: ModalController) {
+				private modalCtrl: ModalController,
+				private menuCtrl: MenuController) {
 
 	}
 
@@ -43,6 +44,10 @@ export class FavoritesPage {
 		});
 
 		this.quotes.splice(position, 1);
+	}
+
+	onOpenMenu() {
+		this.menuCtrl.open();
 	}
 
 }
